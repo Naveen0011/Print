@@ -17,6 +17,12 @@ module.exports = app => {
                 res.send(result);
             });
     });
+    app.post("/edit",(req,res)=>{
+        Todo.findByIdAndUpdate(req.body._id,{todo: req.body.todo,isDone: req.body.isDone},(err,result)=>{
+            if(err) throw err;
+            res.send(result);
+        });
+    });
     app.post("/erase",(req,res)=>{
         Todo.findByIdAndDelete(req.body._id,(err,result)=>{
             if(err) throw err;
